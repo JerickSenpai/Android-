@@ -1,6 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity, ScrollView, Dimensions } from 'react-native';
-import { Feather } from '@expo/vector-icons';
+import { FontAwesome5, MaterialCommunityIcons, AntDesign, Ionicons } from '@expo/vector-icons';
+
 
 const { width } = Dimensions.get('window');
 
@@ -29,26 +30,26 @@ export default function DashboardScreen({ navigation }) {
 
       {/* Footer */}
       <View style={styles.footer}>
-              <TouchableOpacity style={styles.footerButton} onPress={() => navigation.navigate('Due')}>
-                <Feather name="calendar" size={20} color="#fff" />
-                <Text style={styles.footerButtonText}>Due</Text>
-              </TouchableOpacity>
+            <TouchableOpacity style={styles.footerButton} onPress={() => navigation.navigate('Due')}>
+              <FontAwesome5 name="calendar-alt" size={24} color="#fff" />
+              <Text style={styles.footerButtonText}>Due</Text>
+            </TouchableOpacity>
 
-              <TouchableOpacity style={styles.footerButton} onPress={() => navigation.navigate('History')}>
-                <Feather name="clock" size={20} color="#fff" />
-                <Text style={styles.footerButtonText}>History</Text>
-              </TouchableOpacity>
+            <TouchableOpacity style={styles.footerButton} onPress={() => navigation.navigate('History')}>
+              <MaterialCommunityIcons name="history" size={24} color="#fff" />
+              <Text style={styles.footerButtonText}>History</Text>
+            </TouchableOpacity>
 
-              <TouchableOpacity style={styles.footerButton} onPress={() => navigation.navigate('ScanQR')}>
-                <Feather name="camera" size={20} color="#fff" />
-                <Text style={styles.footerButtonText}>Scan QR</Text>
-              </TouchableOpacity>
+            <TouchableOpacity style={styles.footerButton} onPress={() => navigation.navigate('ScanQR')}>
+              <AntDesign name="qrcode" size={24} color="#fff" />
+              <Text style={styles.footerButtonText}>Scan QR</Text>
+            </TouchableOpacity>
 
-              <TouchableOpacity style={styles.footerButton} onPress={() => navigation.navigate('AttendanceRecord')}>
-                <Feather name="check-square" size={20} color="#fff" />
-                <Text style={styles.footerButtonText}>Attendance</Text>
-              </TouchableOpacity>
-        </View>
+            <TouchableOpacity style={styles.footerButton} onPress={() => navigation.navigate('AttendanceRecord')}>
+              <Ionicons name="person-circle-outline" size={24} color="#fff" />
+              <Text style={styles.footerButtonText}>Attendance</Text>
+            </TouchableOpacity>
+          </View>
     </View>
   );
 }
@@ -75,30 +76,31 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '85%',
   },
- footer: {
-  flexDirection: 'row',
-  justifyContent: 'space-between',
-  backgroundColor: '#f0f0f0',
-  paddingHorizontal: 5,
-  paddingVertical: 10,
-},
-
-footerButton: {
-  flex: 1,
-  backgroundColor: '#0071BC',
-  marginHorizontal: 5,
-  paddingVertical: 10,
-  alignItems: 'center',
-  justifyContent: 'center',
-  borderRadius: 10,
-},
-
-footerButtonText: {
-  color: '#fff',
-  fontSize: 12,
-  marginTop: 4,
-  fontWeight: '500',
-  textAlign: 'center',
-},
+  footer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    backgroundColor: '#f0f0f0',
+    paddingHorizontal: 5,
+    paddingVertical: 10,
+  },
+  
+  footerButton: {
+    flex: 1,
+    backgroundColor: '#0071BC',
+    marginHorizontal: 5,
+    paddingVertical: 10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 30, // Rounded button
+    height: 80,
+  },
+  
+  footerButtonText: {
+    color: '#fff',
+    fontSize: 12,
+    marginTop: 4,
+    fontWeight: '500',
+    textAlign: 'center',
+  },
 
 });
