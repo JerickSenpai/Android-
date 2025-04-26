@@ -1,13 +1,24 @@
-import React from 'react';
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity, ActivityIndicator } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
 export default function AttendanceRecordScreen({ navigation }) {
-  const attendanceData = [
-    { date: '2025-04-20', timeIn: '08:15 AM', timeOut: '10:45 AM' },
-    { date: '2025-04-22', timeIn: '09:00 AM', timeOut: '11:00 AM' },
-    { date: '2025-04-25', timeIn: '01:30 PM', timeOut: '03:10 PM' },
-  ];
+  const [attendanceData, setAttendanceData] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Simulate fetching from a database
+  useEffect(() => {
+    setTimeout(() => {
+      // Placeholder "database" data
+      const mockData = [
+        { date: '2025-04-20', timeIn: '08:15 AM', timeOut: '10:45 AM' },
+        { date: '2025-04-22', timeIn: '09:00 AM', timeOut: '11:00 AM' },
+        { date: '2025-04-25', timeIn: '01:30 PM', timeOut: '03:10 PM' },
+      ];
+      setAttendanceData(mockData);
+      setLoading(false);
+    }, 1000); // 1 second delay to simulate database fetch
+  }, []);
 
   return (
     <View style={{ flex: 1 }}>
@@ -22,18 +33,22 @@ export default function AttendanceRecordScreen({ navigation }) {
       {/* Body */}
       <ScrollView contentContainerStyle={styles.container}>
         <Text style={styles.title}>Library Attendance</Text>
-        {attendanceData.map((entry, index) => (
-          <View key={index} style={styles.attendanceItem}>
-            <Text style={styles.text}>Date: {entry.date}</Text>
-            <Text style={styles.text}>Time In: {entry.timeIn}</Text>
-            <Text style={styles.text}>Time Out: {entry.timeOut}</Text>
-          </View>
-        ))}
+
+        {loading ? (
+          <ActivityIndicator size="large" color="#0071BC" />
+        ) : (
+          attendanceData.map((entry, index) => (
+            <View key={index} style={styles.attendanceItem}>
+              <Text style={styles.text}>Date: {entry.date}</Text>
+              <Text style={styles.text}>Time In: {entry.timeIn}</Text>
+              <Text style={styles.text}>Time Out: {entry.timeOut}</Text>
+            </View>
+          ))
+        )}
       </ScrollView>
     </View>
   );
 }
-
 const styles = StyleSheet.create({
   header: {
     flexDirection: 'row',
